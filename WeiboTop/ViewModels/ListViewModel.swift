@@ -13,6 +13,7 @@ class ListViewModel: ObservableObject {
     @Published var tops = [Top]()
     @Published var showToast = false
     var errorMessage: String?
+    let dispatchQueue = DispatchQueue(label: "org.liuduo.WeiboTop.network.response.queue")
     
     lazy var persistentContainer: PersistentContainer = {
         let container = PersistentContainer(name: "Model")
@@ -48,7 +49,7 @@ class ListViewModel: ObservableObject {
                 "num": 10,
                 "token": "LwExDtUWhF3rH5ib"
             ]
-        ).responseDecodable(of: Response.self, decoder: decoder) { [weak self] response in
+        ).responseDecodable(of: Response.self, queue: dispatchQueue, decoder: decoder) { [weak self] response in
             guard let `self` = self else { return }
             switch response.result {
             case .success:
@@ -60,11 +61,15 @@ class ListViewModel: ObservableObject {
                     self.updateTops(response.data ?? [])
                 } else {
                     self.errorMessage = response.msg
-                    self.showToast.toggle()
+                    DispatchQueue.main.async {
+                        self.showToast.toggle()
+                    }
                 }
             case let .failure(error):
                 self.errorMessage = error.localizedDescription
-                self.showToast.toggle()
+                DispatchQueue.main.async {
+                    self.showToast.toggle()
+                }
             }
         }
     }
@@ -76,7 +81,9 @@ class ListViewModel: ObservableObject {
         }
         
         // transform dictionary to model
-        self.tops = tops
+        DispatchQueue.main.async {
+            self.tops = tops
+        }
         
         // persistence
         persistentContainer.saveContext()
