@@ -22,9 +22,9 @@ struct TopList: View {
     var body: some View {
         List(viewModel.tops) { top in
             NavigationLink(
-                destination: WebView(url: top.url)
+                destination: WebView(url: top.url ?? "")
             ) {
-                Text(top.hotWord)
+                Text(top.hotWord ?? "")
             }
         }
         .refreshable {

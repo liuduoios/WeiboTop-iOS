@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		86E3A4AD29065912000FA94E /* Top.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4AC29065912000FA94E /* Top.swift */; };
 		86E3A4AF29065ABB000FA94E /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4AE29065ABB000FA94E /* ListViewModel.swift */; };
 		86E3A4B129065C80000FA94E /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4B029065C80000FA94E /* Response.swift */; };
 		86E3A4B32906656A000FA94E /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4B22906656A000FA94E /* WebView.swift */; };
+		86E3A4B629066A11000FA94E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4B429066A11000FA94E /* Model.xcdatamodeld */; };
+		86E3A4B929067827000FA94E /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4B829067827000FA94E /* PersistentContainer.swift */; };
+		86E3A4BB29068611000FA94E /* Top+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4BA29068611000FA94E /* Top+Extensions.swift */; };
+		86E3A4BD29068D55000FA94E /* Top.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4BC29068D55000FA94E /* Top.swift */; };
+		86E3A4BF290693F9000FA94E /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4BE290693F9000FA94E /* APIError.swift */; };
 		86FB4CD32906541000453F4D /* WeiboTopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB4CD22906541000453F4D /* WeiboTopApp.swift */; };
 		86FB4CD52906541000453F4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB4CD42906541000453F4D /* ContentView.swift */; };
 		86FB4CD72906541100453F4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86FB4CD62906541100453F4D /* Assets.xcassets */; };
@@ -20,10 +24,14 @@
 
 /* Begin PBXFileReference section */
 		1E32287E6A0D9A6B54E5E966 /* Pods-WeiboTop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiboTop.debug.xcconfig"; path = "Target Support Files/Pods-WeiboTop/Pods-WeiboTop.debug.xcconfig"; sourceTree = "<group>"; };
-		86E3A4AC29065912000FA94E /* Top.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top.swift; sourceTree = "<group>"; };
 		86E3A4AE29065ABB000FA94E /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		86E3A4B029065C80000FA94E /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		86E3A4B22906656A000FA94E /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		86E3A4B529066A11000FA94E /* Top.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Top.xcdatamodel; sourceTree = "<group>"; };
+		86E3A4B829067827000FA94E /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
+		86E3A4BA29068611000FA94E /* Top+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Top+Extensions.swift"; sourceTree = "<group>"; };
+		86E3A4BC29068D55000FA94E /* Top.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top.swift; sourceTree = "<group>"; };
+		86E3A4BE290693F9000FA94E /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		86FB4CCF2906541000453F4D /* WeiboTop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiboTop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86FB4CD22906541000453F4D /* WeiboTopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboTopApp.swift; sourceTree = "<group>"; };
 		86FB4CD42906541000453F4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				86E3A4AE29065ABB000FA94E /* ListViewModel.swift */,
+				86E3A4BE290693F9000FA94E /* APIError.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -65,8 +74,11 @@
 		86E3A4AB29065487000FA94E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				86E3A4AC29065912000FA94E /* Top.swift */,
 				86E3A4B029065C80000FA94E /* Response.swift */,
+				86E3A4B429066A11000FA94E /* Model.xcdatamodeld */,
+				86E3A4B829067827000FA94E /* PersistentContainer.swift */,
+				86E3A4BA29068611000FA94E /* Top+Extensions.swift */,
+				86E3A4BC29068D55000FA94E /* Top.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -233,11 +245,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86E3A4AD29065912000FA94E /* Top.swift in Sources */,
+				86E3A4B929067827000FA94E /* PersistentContainer.swift in Sources */,
 				86FB4CD52906541000453F4D /* ContentView.swift in Sources */,
 				86E3A4AF29065ABB000FA94E /* ListViewModel.swift in Sources */,
+				86E3A4BF290693F9000FA94E /* APIError.swift in Sources */,
 				86E3A4B32906656A000FA94E /* WebView.swift in Sources */,
 				86FB4CD32906541000453F4D /* WeiboTopApp.swift in Sources */,
+				86E3A4BB29068611000FA94E /* Top+Extensions.swift in Sources */,
+				86E3A4BD29068D55000FA94E /* Top.swift in Sources */,
+				86E3A4B629066A11000FA94E /* Model.xcdatamodeld in Sources */,
 				86E3A4B129065C80000FA94E /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,6 +455,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		86E3A4B429066A11000FA94E /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				86E3A4B529066A11000FA94E /* Top.xcdatamodel */,
+			);
+			currentVersion = 86E3A4B529066A11000FA94E /* Top.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 86FB4CC72906541000453F4D /* Project object */;
 }
