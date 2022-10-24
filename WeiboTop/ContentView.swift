@@ -20,8 +20,12 @@ struct TopList: View {
     @ObservedObject var viewModel = ListViewModel()
     
     var body: some View {
-        List(viewModel.tops) {
-            Text($0.hotWord)
+        List(viewModel.tops) { top in
+            NavigationLink(
+                destination: WebView(url: top.url)
+            ) {
+                Text(top.hotWord)
+            }
         }
         .refreshable {
             viewModel.loadData()
