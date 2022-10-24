@@ -8,4 +8,5 @@ target 'WeiboTop' do
   # Pods for WeiboTop
   pod 'Alamofire'
   pod 'Kingfisher'
+  pod 'AlertToast'
 end

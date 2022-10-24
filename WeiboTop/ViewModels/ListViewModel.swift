@@ -11,6 +11,8 @@ import CoreData
 
 class ListViewModel: ObservableObject {
     @Published var tops = [Top]()
+    @Published var showToast = false
+    var errorMessage: String?
     
     lazy var persistentContainer: PersistentContainer = {
         let container = PersistentContainer(name: "Model")
@@ -57,11 +59,12 @@ class ListViewModel: ObservableObject {
                 if response.code == 0 {
                     self.updateTops(response.data ?? [])
                 } else {
-                    let apiError = APIError(code: response.code, msg: response.msg)
-                    // TODO: give the error to UI layer
+                    self.errorMessage = response.msg
+                    self.showToast.toggle()
                 }
             case let .failure(error):
-                print(error)
+                self.errorMessage = error.localizedDescription
+                self.showToast.toggle()
             }
         }
     }

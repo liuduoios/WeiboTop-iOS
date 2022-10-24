@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Alamofire
+import AlertToast
 
 struct ContentView: View {
     var body: some View {
@@ -31,6 +32,9 @@ struct TopList: View {
             viewModel.loadData()
         }
         .navigationTitle("微博热搜")
+        .toast(isPresenting: $viewModel.showToast) {
+            AlertToast(type: .regular, title: viewModel.errorMessage)
+        }
     }
 }
 
