@@ -9,6 +9,8 @@ import Foundation
 import Alamofire
 import CoreData
 
+private let lastUpdatedDateKey = "lastUpdatedDate"
+
 class ListViewModel: ObservableObject {
     @Published var tops = [Top]()
     @Published var showToast = false
@@ -35,7 +37,10 @@ class ListViewModel: ObservableObject {
             print(error)
         }
         
-        loadData()
+        // TODO: if there are local datas, only send one request per day.
+        if !hasRequestedToday() {
+            loadData()
+        }
     }
     
     func loadData() {
@@ -87,5 +92,30 @@ class ListViewModel: ObservableObject {
         
         // persistence
         persistentContainer.saveContext()
+        
+        saveUpdatedDate()
+    }
+    
+    private func saveUpdatedDate() {
+        UserDefaults.standard.set(Date.now, forKey: lastUpdatedDateKey)
+        UserDefaults.standard.synchronize()
+    }
+    
+    private func lastUpdatedDate() -> Date? {
+        UserDefaults.standard.object(forKey: lastUpdatedDateKey) as? Date
+    }
+    
+    private func hasRequestedToday() -> Bool {
+        if let lastUpdatedDate = lastUpdatedDate() {
+            let lastComponents = Calendar.current.dateComponents([.day], from: lastUpdatedDate)
+            let nowComponents = Calendar.current.dateComponents([.day], from: .now)
+            if lastComponents.day == nowComponents.day {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
     }
 }
