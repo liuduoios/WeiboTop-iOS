@@ -6,16 +6,27 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            TopList()
         }
-        .padding()
+    }
+}
+
+struct TopList: View {
+    @ObservedObject var viewModel = ListViewModel()
+    
+    var body: some View {
+        List(viewModel.tops) {
+            Text($0.hotWord)
+        }
+        .refreshable {
+            viewModel.loadData()
+        }
+        .navigationTitle("微博热搜")
     }
 }
 
