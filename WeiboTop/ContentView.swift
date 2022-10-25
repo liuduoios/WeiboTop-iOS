@@ -25,7 +25,13 @@ struct TopList: View {
             NavigationLink(
                 destination: WebView(url: top.url ?? "")
             ) {
-                Text(top.hotWord ?? "")
+                VStack(alignment: .leading) {
+                    Text(top.hotWord ?? "")
+                    Text("热度：\(top.hotWordNum)")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                    
+                }
             }
         }
         .refreshable {
