@@ -23,7 +23,7 @@ struct TopList: View {
     var body: some View {
         List(viewModel.tops) { top in
             NavigationLink(
-                destination: WebView(url: top.url ?? "")
+                destination: WebView(url: top.url ?? "").navigationTitle(top.hotWord ?? "")
             ) {
                 VStack(alignment: .leading) {
                     Text(top.hotWord ?? "")
