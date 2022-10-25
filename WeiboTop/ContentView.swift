@@ -21,16 +21,29 @@ struct TopList: View {
     @ObservedObject var viewModel = ListViewModel()
     
     var body: some View {
-        List(viewModel.tops) { top in
+        List(viewModel.tops.indices) { index in
+            let top = viewModel.tops[index]
             NavigationLink(
                 destination: WebView(url: top.url ?? "").navigationTitle(top.hotWord ?? "")
             ) {
-                VStack(alignment: .leading) {
-                    Text(top.hotWord ?? "")
-                    Text("热度：\(top.hotWordNum)")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                    
+                HStack(spacing: 16) {
+                    switch index + 1 {
+                    case let i where i == 1:
+                        Text("\(i)").font(.title).foregroundColor(Color("First"))
+                    case let i where i == 2:
+                        Text("\(i)").font(.title2).foregroundColor(Color("Second"))
+                    case let i where i == 3:
+                        Text("\(i)").font(.title3).foregroundColor(Color("Third"))
+                    default:
+                        Text("\(index + 1)").foregroundColor(Color("Other"))
+                    }
+                    VStack(alignment: .leading) {
+                        Text(top.hotWord ?? "")
+                        Text("热度：\(top.hotWordNum)")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                        
+                    }
                 }
             }
         }

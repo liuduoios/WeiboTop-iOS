@@ -59,19 +59,28 @@ class ListViewModel: ObservableObject {
                     print("the format of response is invalid")
                     return
                 }
-                if response.code == 200 {
-                    self.updateTops(response.data ?? [])
-                } else {
-                    self.errorMessage = response.msg
-                    DispatchQueue.main.async {
-                        self.showToast.toggle()
-                    }
-                }
+                self.handleResponse(response)
             case let .failure(error):
                 self.errorMessage = error.localizedDescription
                 DispatchQueue.main.async {
                     self.showToast.toggle()
                 }
+            }
+        }
+    }
+    
+    private func handleResponse(_ response: Response) {
+        if response.code == 200 {
+            if let data = response.data {
+                let sortedData = data.sorted { $0.hotWordNum > $1.hotWordNum }
+                updateTops(sortedData)
+            } else {
+                updateTops([])
+            }
+        } else {
+            errorMessage = response.msg
+            DispatchQueue.main.async {
+                self.showToast.toggle()
             }
         }
     }
