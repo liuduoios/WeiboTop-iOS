@@ -12,7 +12,7 @@
 		86E3A4B32906656A000FA94E /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4B22906656A000FA94E /* WebView.swift */; };
 		86E3A4B629066A11000FA94E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4B429066A11000FA94E /* Model.xcdatamodeld */; };
 		86E3A4B929067827000FA94E /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4B829067827000FA94E /* PersistentContainer.swift */; };
-		86E3A4BD29068D55000FA94E /* Top.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4BC29068D55000FA94E /* Top.swift */; };
+		86E3A4C329079496000FA94E /* DecodableTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4C229079496000FA94E /* DecodableTop.swift */; };
 		86FB4CD32906541000453F4D /* WeiboTopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB4CD22906541000453F4D /* WeiboTopApp.swift */; };
 		86FB4CD52906541000453F4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB4CD42906541000453F4D /* ContentView.swift */; };
 		86FB4CD72906541100453F4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86FB4CD62906541100453F4D /* Assets.xcassets */; };
@@ -27,7 +27,7 @@
 		86E3A4B22906656A000FA94E /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		86E3A4B529066A11000FA94E /* Top.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Top.xcdatamodel; sourceTree = "<group>"; };
 		86E3A4B829067827000FA94E /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
-		86E3A4BC29068D55000FA94E /* Top.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top.swift; sourceTree = "<group>"; };
+		86E3A4C229079496000FA94E /* DecodableTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableTop.swift; sourceTree = "<group>"; };
 		86FB4CCF2906541000453F4D /* WeiboTop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiboTop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86FB4CD22906541000453F4D /* WeiboTopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboTopApp.swift; sourceTree = "<group>"; };
 		86FB4CD42906541000453F4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 				86E3A4B029065C80000FA94E /* Response.swift */,
 				86E3A4B429066A11000FA94E /* Model.xcdatamodeld */,
 				86E3A4B829067827000FA94E /* PersistentContainer.swift */,
-				86E3A4BC29068D55000FA94E /* Top.swift */,
+				86E3A4C229079496000FA94E /* DecodableTop.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -244,7 +244,7 @@
 				86E3A4AF29065ABB000FA94E /* ListViewModel.swift in Sources */,
 				86E3A4B32906656A000FA94E /* WebView.swift in Sources */,
 				86FB4CD32906541000453F4D /* WeiboTopApp.swift in Sources */,
-				86E3A4BD29068D55000FA94E /* Top.swift in Sources */,
+				86E3A4C329079496000FA94E /* DecodableTop.swift in Sources */,
 				86E3A4B629066A11000FA94E /* Model.xcdatamodeld in Sources */,
 				86E3A4B129065C80000FA94E /* Response.swift in Sources */,
 			);

@@ -29,15 +29,13 @@ class ListViewModel: ObservableObject {
     
     init() {
         // fetch a model
-        let fetchRequest = NSFetchRequest<Top>(entityName: "Top")
         do {
-            let tops = try persistentContainer.viewContext.fetch(fetchRequest)
+            let tops = try persistentContainer.viewContext.fetch(Top.fetchRequest())
             self.tops = tops
         } catch {
             print(error)
         }
         
-        // TODO: if there are local datas, only send one request per day.
         if !hasRequestedToday() {
             loadData()
         }
@@ -46,12 +44,11 @@ class ListViewModel: ObservableObject {
     func loadData() {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        decoder.userInfo[.managedObjectContext] = persistentContainer.viewContext
         
         AF.request(
             "https://v2.alapi.cn/api/new/wbtop",
             parameters: [
-                "num": 10,
+                "num": 20,
                 "token": "LwExDtUWhF3rH5ib"
             ]
         ).responseDecodable(of: Response.self, queue: dispatchQueue, decoder: decoder) { [weak self] response in
@@ -62,7 +59,7 @@ class ListViewModel: ObservableObject {
                     print("the format of response is invalid")
                     return
                 }
-                if response.code == 0 {
+                if response.code == 200 {
                     self.updateTops(response.data ?? [])
                 } else {
                     self.errorMessage = response.msg
@@ -79,13 +76,21 @@ class ListViewModel: ObservableObject {
         }
     }
     
-    func updateTops(_ tops: [Top]) {
+    func updateTops(_ decodableTops: [DecodableTop]) {
         // delete all datas saved before
         for top in self.tops {
             persistentContainer.viewContext.delete(top)
         }
         
-        // transform dictionary to model
+        // transform decodableTops to Tops
+        var tops = [Top]()
+        for decodableTop in decodableTops {
+            let top = NSEntityDescription.insertNewObject(forEntityName: "Top", into: persistentContainer.viewContext) as! Top
+            top.hotWord = decodableTop.hotWord
+            top.hotWordNum = decodableTop.hotWordNum
+            top.url = decodableTop.url
+            tops.append(top)
+        }
         DispatchQueue.main.async {
             self.tops = tops
         }

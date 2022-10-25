@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import CoreData
 
 struct Response: Decodable {
     let code: Int
     let msg: String
-    let data: [Top]?
+    let data: [DecodableTop]?
     let time: TimeInterval
     let logId: Int64
 }
