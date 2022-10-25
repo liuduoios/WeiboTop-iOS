@@ -112,9 +112,9 @@ class ListViewModel: ObservableObject {
     
     private func hasRequestedToday() -> Bool {
         if let lastUpdatedDate = lastUpdatedDate() {
-            let lastComponents = Calendar.current.dateComponents([.day], from: lastUpdatedDate)
-            let nowComponents = Calendar.current.dateComponents([.day], from: .now)
-            if lastComponents.day == nowComponents.day {
+            let lastComponents = Calendar.current.dateComponents([.hour], from: lastUpdatedDate)
+            let nowComponents = Calendar.current.dateComponents([.hour], from: .now)
+            if lastComponents.hour == nowComponents.hour {
                 return true
             } else {
                 return false
