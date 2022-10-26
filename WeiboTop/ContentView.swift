@@ -21,13 +21,12 @@ struct TopList: View {
     @ObservedObject var viewModel = ListViewModel()
     
     var body: some View {
-        List(viewModel.tops.indices) { index in
-            let top = viewModel.tops[index]
+        List(viewModel.tops) { top in
             NavigationLink(
                 destination: WebView(url: top.url ?? "").navigationTitle(top.hotWord ?? "")
             ) {
                 HStack(spacing: 16) {
-                    switch index + 1 {
+                    switch top.index + 1 {
                     case let i where i == 1:
                         Text("\(i)").font(.title).foregroundColor(Color("First"))
                     case let i where i == 2:
@@ -35,7 +34,7 @@ struct TopList: View {
                     case let i where i == 3:
                         Text("\(i)").font(.title3).foregroundColor(Color("Third"))
                     default:
-                        Text("\(index + 1)").foregroundColor(Color("Other"))
+                        Text("\(top.index + 1)").foregroundColor(Color("Other"))
                     }
                     VStack(alignment: .leading) {
                         Text(top.hotWord ?? "")

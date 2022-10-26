@@ -28,16 +28,24 @@ class ListViewModel: ObservableObject {
     }()
     
     init() {
-        // fetch a model
-        do {
-            let tops = try persistentContainer.viewContext.fetch(Top.fetchRequest())
-            self.tops = tops
-        } catch {
-            print(error)
+        loadLocalData { [unowned self] in
+            if !self.hasRequestedToday() {
+                self.loadData()
+            }
         }
-        
-        if !hasRequestedToday() {
-            loadData()
+    }
+    
+    func loadLocalData(completion: @escaping () -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                let tops = try self.persistentContainer.viewContext.fetch(Top.fetchRequest()).sortAndIndexed()
+                DispatchQueue.main.async {
+                    self.tops = tops
+                    completion()
+                }
+            } catch {
+                print(error)
+            }
         }
     }
     
@@ -72,8 +80,7 @@ class ListViewModel: ObservableObject {
     private func handleResponse(_ response: Response) {
         if response.code == 200 {
             if let data = response.data {
-                let sortedData = data.sorted { $0.hotWordNum > $1.hotWordNum }
-                updateTops(sortedData)
+                updateTops(data)
             } else {
                 updateTops([])
             }
@@ -100,6 +107,7 @@ class ListViewModel: ObservableObject {
             top.url = decodableTop.url
             tops.append(top)
         }
+        tops = tops.sortAndIndexed()
         DispatchQueue.main.async {
             self.tops = tops
         }
