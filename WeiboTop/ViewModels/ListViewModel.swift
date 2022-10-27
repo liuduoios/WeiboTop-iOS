@@ -28,23 +28,32 @@ class ListViewModel: ObservableObject {
     }()
     
     init() {
-        loadLocalData { [unowned self] in
-            if !self.hasRequestedToday() {
-                self.loadData()
+        Task {
+            do {
+                try await loadLocalData()
+                if !hasRequestedToday() {
+                    loadData()
+                }
+            } catch {
+                errorMessage = error.localizedDescription
+                showToast.toggle()
             }
         }
     }
     
-    func loadLocalData(completion: @escaping () -> Void) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                let tops = try self.persistentContainer.viewContext.fetch(Top.fetchRequest()).sortAndIndexed()
-                DispatchQueue.main.async {
-                    self.tops = tops
-                    completion()
+    func loadLocalData() async throws {
+        return try await withCheckedThrowingContinuation { continuation in
+            DispatchQueue.global(qos: .userInitiated).async {
+                do {
+                    let tops = try self.persistentContainer.viewContext.fetch(Top.fetchRequest()).sortAndIndexed()
+                    DispatchQueue.main.async {
+                        self.tops = tops
+                        continuation.resume(returning: ())
+                    }
+                } catch {
+                    print(error)
+                    continuation.resume(throwing: error)
                 }
-            } catch {
-                print(error)
             }
         }
     }
