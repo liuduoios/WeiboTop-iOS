@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		862765AA290A248D006EF210 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862765A9290A248D006EF210 /* APIError.swift */; };
 		86E3A4AF29065ABB000FA94E /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4AE29065ABB000FA94E /* ListViewModel.swift */; };
 		86E3A4B129065C80000FA94E /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4B029065C80000FA94E /* Response.swift */; };
 		86E3A4B32906656A000FA94E /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4B22906656A000FA94E /* WebView.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		1E32287E6A0D9A6B54E5E966 /* Pods-WeiboTop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiboTop.debug.xcconfig"; path = "Target Support Files/Pods-WeiboTop/Pods-WeiboTop.debug.xcconfig"; sourceTree = "<group>"; };
+		862765A9290A248D006EF210 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		86E3A4AE29065ABB000FA94E /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		86E3A4B029065C80000FA94E /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		86E3A4B22906656A000FA94E /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				86E3A4AE29065ABB000FA94E /* ListViewModel.swift */,
+				862765A9290A248D006EF210 /* APIError.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				86E3A4B929067827000FA94E /* PersistentContainer.swift in Sources */,
 				86FB4CD52906541000453F4D /* ContentView.swift in Sources */,
 				86E3A4AF29065ABB000FA94E /* ListViewModel.swift in Sources */,
+				862765AA290A248D006EF210 /* APIError.swift in Sources */,
 				86E3A4B32906656A000FA94E /* WebView.swift in Sources */,
 				86FB4CD32906541000453F4D /* WeiboTopApp.swift in Sources */,
 				86E3A4C329079496000FA94E /* DecodableTop.swift in Sources */,

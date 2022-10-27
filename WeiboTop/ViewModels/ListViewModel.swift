@@ -11,13 +11,16 @@ import CoreData
 
 private let lastUpdatedDateKey = "lastUpdatedDate"
 
+@MainActor
 class ListViewModel: ObservableObject {
+    
     @Published var tops = [Top]()
     @Published var showToast = false
+    
     var errorMessage: String?
     let dispatchQueue = DispatchQueue(label: "org.liuduo.WeiboTop.network.response.queue")
     
-    lazy var persistentContainer: PersistentContainer = {
+    let persistentContainer: PersistentContainer = {
         let container = PersistentContainer(name: "Model")
         container.loadPersistentStores { description, error in
             if let error = error {
@@ -30,9 +33,9 @@ class ListViewModel: ObservableObject {
     init() {
         Task {
             do {
-                try await loadLocalData()
+                tops = try await loadLocalData()
                 if !hasRequestedToday() {
-                    loadData()
+                    try await refresh()
                 }
             } catch {
                 errorMessage = error.localizedDescription
@@ -41,15 +44,12 @@ class ListViewModel: ObservableObject {
         }
     }
     
-    func loadLocalData() async throws {
+    func loadLocalData() async throws -> [Top] {
         return try await withCheckedThrowingContinuation { continuation in
             DispatchQueue.global(qos: .userInitiated).async {
                 do {
                     let tops = try self.persistentContainer.viewContext.fetch(Top.fetchRequest()).sortAndIndexed()
-                    DispatchQueue.main.async {
-                        self.tops = tops
-                        continuation.resume(returning: ())
-                    }
+                    continuation.resume(returning: tops)
                 } catch {
                     print(error)
                     continuation.resume(throwing: error)
@@ -58,56 +58,53 @@ class ListViewModel: ObservableObject {
         }
     }
     
-    func loadData() {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        
-        AF.request(
-            "https://v2.alapi.cn/api/new/wbtop",
-            parameters: [
-                "num": 20,
-                "token": "LwExDtUWhF3rH5ib"
-            ]
-        ).responseDecodable(of: Response.self, queue: dispatchQueue, decoder: decoder) { [weak self] response in
-            guard let `self` = self else { return }
-            switch response.result {
-            case .success:
-                guard let response = response.value else {
-                    print("the format of response is invalid")
-                    return
-                }
-                self.handleResponse(response)
-            case let .failure(error):
-                self.errorMessage = error.localizedDescription
-                DispatchQueue.main.async {
-                    self.showToast.toggle()
+    func refresh() async throws {
+        self.tops = try await loadData()
+    }
+    
+    func loadData() async throws -> [Top] {
+        return try await withCheckedThrowingContinuation { continuation in
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            
+            AF.request(
+                "https://v2.alapi.cn/api/new/wbtop",
+                parameters: [
+                    "num": 20,
+                    "token": "LwExDtUWhF3rH5ib"
+                ]
+            ).responseDecodable(of: Response.self, queue: dispatchQueue, decoder: decoder) { [weak self] response in
+                guard let `self` = self else { return }
+                switch response.result {
+                case .success:
+                    guard let response = response.value else {
+                        print("the format of response is invalid")
+                        return
+                    }
+                    if response.code == 200 {
+                        self.deleteOldTops()
+                        let tops = self.topsFromDecodableTops(response.data ?? []).sortAndIndexed()
+                        self.persistentContainer.saveContext()
+                        self.saveUpdatedDate()
+                        continuation.resume(returning: tops)
+                    } else {
+                        let error = APIError(code: response.code, message: response.msg)
+                        continuation.resume(throwing: error)
+                    }
+                case let .failure(error):
+                    continuation.resume(throwing: error)
                 }
             }
         }
     }
     
-    private func handleResponse(_ response: Response) {
-        if response.code == 200 {
-            if let data = response.data {
-                updateTops(data)
-            } else {
-                updateTops([])
-            }
-        } else {
-            errorMessage = response.msg
-            DispatchQueue.main.async {
-                self.showToast.toggle()
-            }
-        }
-    }
-    
-    func updateTops(_ decodableTops: [DecodableTop]) {
-        // delete all datas saved before
-        for top in self.tops {
+    private func deleteOldTops() {
+        for top in tops {
             persistentContainer.viewContext.delete(top)
         }
-        
-        // transform decodableTops to Tops
+    }
+    
+    private func topsFromDecodableTops(_ decodableTops: [DecodableTop]) -> [Top] {
         var tops = [Top]()
         for decodableTop in decodableTops {
             let top = NSEntityDescription.insertNewObject(forEntityName: "Top", into: persistentContainer.viewContext) as! Top
@@ -116,15 +113,7 @@ class ListViewModel: ObservableObject {
             top.url = decodableTop.url
             tops.append(top)
         }
-        tops = tops.sortAndIndexed()
-        DispatchQueue.main.async {
-            self.tops = tops
-        }
-        
-        // persistence
-        persistentContainer.saveContext()
-        
-        saveUpdatedDate()
+        return tops
     }
     
     private func saveUpdatedDate() {

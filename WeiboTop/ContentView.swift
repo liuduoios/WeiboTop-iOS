@@ -47,7 +47,7 @@ struct TopList: View {
             }
         }
         .refreshable {
-            viewModel.loadData()
+            try? await viewModel.refresh()
         }
         .navigationTitle("微博热搜")
         .toast(isPresenting: $viewModel.showToast) {
