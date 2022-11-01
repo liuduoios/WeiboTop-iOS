@@ -31,6 +31,21 @@ class ListViewModel: ObservableObject {
     }()
     
     init() {
+        NotificationCenter.default.addObserver(
+            forName: UIApplication.willEnterForegroundNotification,
+            object: nil,
+            queue: .main) { notification in
+                Task {
+                    if await !self.hasRequestedToday() {
+                        do {
+                            try await self.refresh()
+                        } catch {
+                            await self.handleError(error)
+                        }
+                    }
+                }
+            }
+        
         Task {
             do {
                 tops = try await loadLocalData()
@@ -38,13 +53,22 @@ class ListViewModel: ObservableObject {
                     try await refresh()
                 }
             } catch {
-                errorMessage = error.localizedDescription
-                showToast.toggle()
+                handleError(error)
             }
         }
     }
     
-    func loadLocalData() async throws -> [Top] {
+    private func handleError(_ error: Error) {
+        if let apiError = error as? APIError {
+            self.errorMessage = apiError.message
+            self.showToast.toggle()
+        } else {
+            self.errorMessage = error.localizedDescription
+            self.showToast.toggle()
+        }
+    }
+    
+    private func loadLocalData() async throws -> [Top] {
         return try await withCheckedThrowingContinuation { continuation in
             DispatchQueue.global(qos: .userInitiated).async {
                 do {
