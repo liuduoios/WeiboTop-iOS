@@ -6,6 +6,7 @@ target 'WeiboTop' do
   use_frameworks!
 
   # Pods for WeiboTop
+  pod 'Moya/Combine', '~> 15.0'
   pod 'Alamofire'
   pod 'Kingfisher'
   pod 'AlertToast'

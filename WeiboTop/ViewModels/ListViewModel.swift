@@ -6,8 +6,9 @@
 //
 
 import Foundation
-import Alamofire
 import CoreData
+import Moya
+import Combine
 
 private let lastUpdatedDateKey = "lastUpdatedDate"
 
@@ -19,6 +20,7 @@ class ListViewModel: ObservableObject {
     
     var errorMessage: String?
     let dispatchQueue = DispatchQueue(label: "org.liuduo.WeiboTop.network.response.queue")
+    var cancellable: AnyCancellable?
     
     let persistentContainer: PersistentContainer = {
         let container = PersistentContainer(name: "Model")
@@ -35,7 +37,7 @@ class ListViewModel: ObservableObject {
             forName: UIApplication.willEnterForegroundNotification,
             object: nil,
             queue: .main) { notification in
-                Task {
+                _Concurrency.Task {
                     if await !self.hasRequestedToday() {
                         do {
                             try await self.refresh()
@@ -46,7 +48,7 @@ class ListViewModel: ObservableObject {
                 }
             }
         
-        Task {
+        _Concurrency.Task {
             do {
                 tops = try await loadLocalData()
                 if !hasRequestedToday() {
@@ -88,37 +90,32 @@ class ListViewModel: ObservableObject {
     
     func loadData() async throws -> [Top] {
         return try await withCheckedThrowingContinuation { continuation in
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            
-            AF.request(
-                "https://v2.alapi.cn/api/new/wbtop",
-                parameters: [
-                    "num": 20,
-                    "token": "LwExDtUWhF3rH5ib"
-                ]
-            ).responseDecodable(of: Response.self, queue: dispatchQueue, decoder: decoder) { [weak self] response in
-                guard let `self` = self else { return }
-                switch response.result {
-                case .success:
-                    guard let response = response.value else {
-                        print("the format of response is invalid")
+            let provider = MoyaProvider<API>()
+            cancellable = provider.requestPublisher(.weiboTop(num: 20, token: "LwExDtUWhF3rH5ib"), callbackQueue: dispatchQueue)
+                .sink (receiveCompletion: { completion in
+                    guard case let .failure(error) = completion else {
                         return
                     }
-                    if response.code == 200 {
-                        self.deleteOldTops()
-                        let tops = self.topsFromDecodableTops(response.data ?? []).sortAndIndexed()
-                        self.persistentContainer.saveContext()
-                        self.saveUpdatedDate()
-                        continuation.resume(returning: tops)
-                    } else {
-                        let error = APIError(code: response.code, message: response.msg)
+                    continuation.resume(throwing: error)
+                }, receiveValue: { response in
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    do {
+                        let res = try decoder.decode(Response.self, from: response.data)
+                        if res.code == 200 {
+                            self.deleteOldTops()
+                            let tops = self.topsFromDecodableTops(res.data ?? []).sortAndIndexed()
+                            self.persistentContainer.saveContext()
+                            self.saveUpdatedDate()
+                            continuation.resume(returning: tops)
+                        } else {
+                            let error = APIError(code: res.code, message: res.msg)
+                            continuation.resume(throwing: error)
+                        }
+                    } catch {
                         continuation.resume(throwing: error)
                     }
-                case let .failure(error):
-                    continuation.resume(throwing: error)
-                }
-            }
+                })
         }
     }
     

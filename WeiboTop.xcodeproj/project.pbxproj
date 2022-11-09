@@ -19,6 +19,7 @@
 		86E3A4B929067827000FA94E /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4B829067827000FA94E /* PersistentContainer.swift */; };
 		86E3A4C329079496000FA94E /* DecodableTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4C229079496000FA94E /* DecodableTop.swift */; };
 		86E3A4E0290925DE000FA94E /* Tops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4DF290925DE000FA94E /* Tops.swift */; };
+		86EB8D40291BAAAB00E8CB57 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB8D3F291BAAAB00E8CB57 /* API.swift */; };
 		86FB4CD32906541000453F4D /* WeiboTopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB4CD22906541000453F4D /* WeiboTopApp.swift */; };
 		86FB4CD52906541000453F4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB4CD42906541000453F4D /* ContentView.swift */; };
 		86FB4CD72906541100453F4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86FB4CD62906541100453F4D /* Assets.xcassets */; };
@@ -59,6 +60,7 @@
 		86E3A4B829067827000FA94E /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
 		86E3A4C229079496000FA94E /* DecodableTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableTop.swift; sourceTree = "<group>"; };
 		86E3A4DF290925DE000FA94E /* Tops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tops.swift; sourceTree = "<group>"; };
+		86EB8D3F291BAAAB00E8CB57 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		86FB4CCF2906541000453F4D /* WeiboTop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiboTop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86FB4CD22906541000453F4D /* WeiboTopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboTopApp.swift; sourceTree = "<group>"; };
 		86FB4CD42906541000453F4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -141,6 +143,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		86EB8D3E291BAA8200E8CB57 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				86EB8D3F291BAAAB00E8CB57 /* API.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		86FB4CC62906541000453F4D = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +176,7 @@
 		86FB4CD12906541000453F4D /* WeiboTop */ = {
 			isa = PBXGroup;
 			children = (
+				86EB8D3E291BAA8200E8CB57 /* API */,
 				86E3A4AB29065487000FA94E /* Models */,
 				86E3A4AA2906547D000FA94E /* ViewModels */,
 				86FB4CD22906541000453F4D /* WeiboTopApp.swift */,
@@ -395,6 +406,7 @@
 				86E3A4C329079496000FA94E /* DecodableTop.swift in Sources */,
 				86E3A4E0290925DE000FA94E /* Tops.swift in Sources */,
 				86E3A4B629066A11000FA94E /* Model.xcdatamodeld in Sources */,
+				86EB8D40291BAAAB00E8CB57 /* API.swift in Sources */,
 				86E3A4B129065C80000FA94E /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
