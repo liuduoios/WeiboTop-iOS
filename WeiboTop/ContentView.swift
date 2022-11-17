@@ -19,14 +19,14 @@ struct ContentView: View {
                 TopList()
             }
             .tabItem {
-                Image(systemName: "house.fill")
+                Image(systemName: "house")
                 Text("列表")
             }
             NavigationView {
                 Settings()
             }
             .tabItem {
-                Image(systemName: "house.fill")
+                Image(systemName: "gear")
                 Text("设置")
             }
         }
