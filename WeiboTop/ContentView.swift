@@ -11,10 +11,26 @@ import AlertToast
 import Business
 
 struct ContentView: View {
+    @AppStorage("themeMode") private var themeMode: Theme = .system
+    
     var body: some View {
-        NavigationView {
-            TopList()
+        TabView {
+            NavigationView {
+                TopList()
+            }
+            .tabItem {
+                Image(systemName: "house.fill")
+                Text("列表")
+            }
+            NavigationView {
+                Settings()
+            }
+            .tabItem {
+                Image(systemName: "house.fill")
+                Text("设置")
+            }
         }
+        .preferredColorScheme(themeMode.colorScheme)
     }
 }
 
