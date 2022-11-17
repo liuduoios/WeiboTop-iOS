@@ -24,7 +24,7 @@ struct TopList: View {
     var body: some View {
         List(viewModel.tops) { top in
             NavigationLink(
-                destination: WebView(url: top.url ?? "").navigationTitle(top.hotWord ?? "")
+                destination: SafariViewController(url: top.url ?? "").navigationBarTitleDisplayMode(.inline)
             ) {
                 HStack(spacing: 16) {
                     switch top.index + 1 {
@@ -51,6 +51,7 @@ struct TopList: View {
             try? await viewModel.refresh()
         }
         .navigationTitle("微博热搜")
+        .navigationBarTitleDisplayMode(.automatic)
         .toast(isPresenting: $viewModel.showToast) {
             AlertToast(type: .regular, title: viewModel.errorMessage)
         }

@@ -11,9 +11,10 @@
 		86662143291B90A200D53CAF /* WeiboTopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86662142291B90A200D53CAF /* WeiboTopTests.swift */; };
 		86662150291B90CF00D53CAF /* WeiboTopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8666214F291B90CF00D53CAF /* WeiboTopUITests.swift */; };
 		86662152291B90CF00D53CAF /* WeiboTopUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86662151291B90CF00D53CAF /* WeiboTopUITestsLaunchTests.swift */; };
+		86C8197F2925EA7B0042EED8 /* SafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C8197E2925EA7B0042EED8 /* SafariViewController.swift */; };
+		86C819822925EFF50042EED8 /* Infrastructure in Frameworks */ = {isa = PBXBuildFile; productRef = 86C819812925EFF50042EED8 /* Infrastructure */; };
 		86C9A7D52925D3A600ABEC99 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 86C9A7D42925D3A600ABEC99 /* AlertToast */; };
 		86C9A7D92925D47100ABEC99 /* Business in Frameworks */ = {isa = PBXBuildFile; productRef = 86C9A7D82925D47100ABEC99 /* Business */; };
-		86E3A4B32906656A000FA94E /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4B22906656A000FA94E /* WebView.swift */; };
 		86FB4CD32906541000453F4D /* WeiboTopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB4CD22906541000453F4D /* WeiboTopApp.swift */; };
 		86FB4CD52906541000453F4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB4CD42906541000453F4D /* ContentView.swift */; };
 		86FB4CD72906541100453F4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86FB4CD62906541100453F4D /* Assets.xcassets */; };
@@ -44,8 +45,9 @@
 		8666214D291B90CF00D53CAF /* WeiboTopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeiboTopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8666214F291B90CF00D53CAF /* WeiboTopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboTopUITests.swift; sourceTree = "<group>"; };
 		86662151291B90CF00D53CAF /* WeiboTopUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboTopUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		86C8197E2925EA7B0042EED8 /* SafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewController.swift; sourceTree = "<group>"; };
+		86C819802925EC1B0042EED8 /* Infrastructure */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Infrastructure; sourceTree = "<group>"; };
 		86C9A7D62925D40E00ABEC99 /* Business */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Business; sourceTree = "<group>"; };
-		86E3A4B22906656A000FA94E /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		86FB4CCF2906541000453F4D /* WeiboTop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiboTop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86FB4CD22906541000453F4D /* WeiboTopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboTopApp.swift; sourceTree = "<group>"; };
 		86FB4CD42906541000453F4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86C9A7D52925D3A600ABEC99 /* AlertToast in Frameworks */,
+				86C819822925EFF50042EED8 /* Infrastructure in Frameworks */,
 				86C9A7D92925D47100ABEC99 /* Business in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,6 +110,7 @@
 		86FB4CC62906541000453F4D = {
 			isa = PBXGroup;
 			children = (
+				86C819802925EC1B0042EED8 /* Infrastructure */,
 				86C9A7D62925D40E00ABEC99 /* Business */,
 				86FB4CD12906541000453F4D /* WeiboTop */,
 				86662141291B90A200D53CAF /* WeiboTopTests */,
@@ -131,8 +135,8 @@
 			children = (
 				86FB4CD22906541000453F4D /* WeiboTopApp.swift */,
 				86FB4CD42906541000453F4D /* ContentView.swift */,
-				86E3A4B22906656A000FA94E /* WebView.swift */,
 				8666213A291B8A6200D53CAF /* AppMetrics.swift */,
+				86C8197E2925EA7B0042EED8 /* SafariViewController.swift */,
 				86FB4CD62906541100453F4D /* Assets.xcassets */,
 				86FB4CD82906541100453F4D /* Preview Content */,
 			);
@@ -202,6 +206,7 @@
 			packageProductDependencies = (
 				86C9A7D42925D3A600ABEC99 /* AlertToast */,
 				86C9A7D82925D47100ABEC99 /* Business */,
+				86C819812925EFF50042EED8 /* Infrastructure */,
 			);
 			productName = WeiboTop;
 			productReference = 86FB4CCF2906541000453F4D /* WeiboTop.app */;
@@ -303,7 +308,7 @@
 			files = (
 				86FB4CD52906541000453F4D /* ContentView.swift in Sources */,
 				8666213B291B8A6200D53CAF /* AppMetrics.swift in Sources */,
-				86E3A4B32906656A000FA94E /* WebView.swift in Sources */,
+				86C8197F2925EA7B0042EED8 /* SafariViewController.swift in Sources */,
 				86FB4CD32906541000453F4D /* WeiboTopApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -619,6 +624,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		86C819812925EFF50042EED8 /* Infrastructure */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Infrastructure;
+		};
 		86C9A7D42925D3A600ABEC99 /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 86C9A7D32925D3A600ABEC99 /* XCRemoteSwiftPackageReference "AlertToast" */;
