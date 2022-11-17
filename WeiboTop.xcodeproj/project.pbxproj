@@ -7,24 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		862765AA290A248D006EF210 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862765A9290A248D006EF210 /* APIError.swift */; };
 		8666213B291B8A6200D53CAF /* AppMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8666213A291B8A6200D53CAF /* AppMetrics.swift */; };
 		86662143291B90A200D53CAF /* WeiboTopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86662142291B90A200D53CAF /* WeiboTopTests.swift */; };
 		86662150291B90CF00D53CAF /* WeiboTopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8666214F291B90CF00D53CAF /* WeiboTopUITests.swift */; };
 		86662152291B90CF00D53CAF /* WeiboTopUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86662151291B90CF00D53CAF /* WeiboTopUITestsLaunchTests.swift */; };
-		86E3A4AF29065ABB000FA94E /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4AE29065ABB000FA94E /* ListViewModel.swift */; };
-		86E3A4B129065C80000FA94E /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4B029065C80000FA94E /* Response.swift */; };
+		86C9A7D52925D3A600ABEC99 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 86C9A7D42925D3A600ABEC99 /* AlertToast */; };
+		86C9A7D92925D47100ABEC99 /* Business in Frameworks */ = {isa = PBXBuildFile; productRef = 86C9A7D82925D47100ABEC99 /* Business */; };
 		86E3A4B32906656A000FA94E /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4B22906656A000FA94E /* WebView.swift */; };
-		86E3A4B629066A11000FA94E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4B429066A11000FA94E /* Model.xcdatamodeld */; };
-		86E3A4B929067827000FA94E /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4B829067827000FA94E /* PersistentContainer.swift */; };
-		86E3A4C329079496000FA94E /* DecodableTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4C229079496000FA94E /* DecodableTop.swift */; };
-		86E3A4E0290925DE000FA94E /* Tops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E3A4DF290925DE000FA94E /* Tops.swift */; };
-		86EB8D40291BAAAB00E8CB57 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB8D3F291BAAAB00E8CB57 /* API.swift */; };
 		86FB4CD32906541000453F4D /* WeiboTopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB4CD22906541000453F4D /* WeiboTopApp.swift */; };
 		86FB4CD52906541000453F4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB4CD42906541000453F4D /* ContentView.swift */; };
 		86FB4CD72906541100453F4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86FB4CD62906541100453F4D /* Assets.xcassets */; };
 		86FB4CDA2906541100453F4D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86FB4CD92906541100453F4D /* Preview Assets.xcassets */; };
-		F45C30FB3FFCCE8FAFBBAA24 /* Pods_WeiboTop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB68027BF57DB24F2B263ACC /* Pods_WeiboTop.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,29 +38,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1E32287E6A0D9A6B54E5E966 /* Pods-WeiboTop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiboTop.debug.xcconfig"; path = "Target Support Files/Pods-WeiboTop/Pods-WeiboTop.debug.xcconfig"; sourceTree = "<group>"; };
-		862765A9290A248D006EF210 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		8666213A291B8A6200D53CAF /* AppMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetrics.swift; sourceTree = "<group>"; };
 		86662140291B90A200D53CAF /* WeiboTopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeiboTopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86662142291B90A200D53CAF /* WeiboTopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboTopTests.swift; sourceTree = "<group>"; };
 		8666214D291B90CF00D53CAF /* WeiboTopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeiboTopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8666214F291B90CF00D53CAF /* WeiboTopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboTopUITests.swift; sourceTree = "<group>"; };
 		86662151291B90CF00D53CAF /* WeiboTopUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboTopUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		86E3A4AE29065ABB000FA94E /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
-		86E3A4B029065C80000FA94E /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		86C9A7D62925D40E00ABEC99 /* Business */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Business; sourceTree = "<group>"; };
 		86E3A4B22906656A000FA94E /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		86E3A4B529066A11000FA94E /* Top.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Top.xcdatamodel; sourceTree = "<group>"; };
-		86E3A4B829067827000FA94E /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
-		86E3A4C229079496000FA94E /* DecodableTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableTop.swift; sourceTree = "<group>"; };
-		86E3A4DF290925DE000FA94E /* Tops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tops.swift; sourceTree = "<group>"; };
-		86EB8D3F291BAAAB00E8CB57 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		86FB4CCF2906541000453F4D /* WeiboTop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiboTop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86FB4CD22906541000453F4D /* WeiboTopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboTopApp.swift; sourceTree = "<group>"; };
 		86FB4CD42906541000453F4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		86FB4CD62906541100453F4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86FB4CD92906541100453F4D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		A0EB96DB7E27A395075759DB /* Pods-WeiboTop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiboTop.release.xcconfig"; path = "Target Support Files/Pods-WeiboTop/Pods-WeiboTop.release.xcconfig"; sourceTree = "<group>"; };
-		FB68027BF57DB24F2B263ACC /* Pods_WeiboTop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeiboTop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,22 +72,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F45C30FB3FFCCE8FAFBBAA24 /* Pods_WeiboTop.framework in Frameworks */,
+				86C9A7D52925D3A600ABEC99 /* AlertToast in Frameworks */,
+				86C9A7D92925D47100ABEC99 /* Business in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		14139DB66EE4288067B8E165 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1E32287E6A0D9A6B54E5E966 /* Pods-WeiboTop.debug.xcconfig */,
-				A0EB96DB7E27A395075759DB /* Pods-WeiboTop.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		86662141291B90A200D53CAF /* WeiboTopTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,44 +97,22 @@
 			path = WeiboTopUITests;
 			sourceTree = "<group>";
 		};
-		86E3A4AA2906547D000FA94E /* ViewModels */ = {
+		86C9A7D72925D47100ABEC99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				86E3A4AE29065ABB000FA94E /* ListViewModel.swift */,
-				862765A9290A248D006EF210 /* APIError.swift */,
 			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		86E3A4AB29065487000FA94E /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				86E3A4B029065C80000FA94E /* Response.swift */,
-				86E3A4B429066A11000FA94E /* Model.xcdatamodeld */,
-				86E3A4B829067827000FA94E /* PersistentContainer.swift */,
-				86E3A4C229079496000FA94E /* DecodableTop.swift */,
-				86E3A4DF290925DE000FA94E /* Tops.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		86EB8D3E291BAA8200E8CB57 /* API */ = {
-			isa = PBXGroup;
-			children = (
-				86EB8D3F291BAAAB00E8CB57 /* API.swift */,
-			);
-			path = API;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		86FB4CC62906541000453F4D = {
 			isa = PBXGroup;
 			children = (
+				86C9A7D62925D40E00ABEC99 /* Business */,
 				86FB4CD12906541000453F4D /* WeiboTop */,
 				86662141291B90A200D53CAF /* WeiboTopTests */,
 				8666214E291B90CF00D53CAF /* WeiboTopUITests */,
 				86FB4CD02906541000453F4D /* Products */,
-				14139DB66EE4288067B8E165 /* Pods */,
-				9C9DD72E1DA3570C20445D90 /* Frameworks */,
+				86C9A7D72925D47100ABEC99 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -176,9 +129,6 @@
 		86FB4CD12906541000453F4D /* WeiboTop */ = {
 			isa = PBXGroup;
 			children = (
-				86EB8D3E291BAA8200E8CB57 /* API */,
-				86E3A4AB29065487000FA94E /* Models */,
-				86E3A4AA2906547D000FA94E /* ViewModels */,
 				86FB4CD22906541000453F4D /* WeiboTopApp.swift */,
 				86FB4CD42906541000453F4D /* ContentView.swift */,
 				86E3A4B22906656A000FA94E /* WebView.swift */,
@@ -195,14 +145,6 @@
 				86FB4CD92906541100453F4D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		9C9DD72E1DA3570C20445D90 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FB68027BF57DB24F2B263ACC /* Pods_WeiboTop.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,17 +190,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86FB4CDD2906541100453F4D /* Build configuration list for PBXNativeTarget "WeiboTop" */;
 			buildPhases = (
-				74DE52167A584B0550C1BD6B /* [CP] Check Pods Manifest.lock */,
 				86FB4CCB2906541000453F4D /* Sources */,
 				86FB4CCC2906541000453F4D /* Frameworks */,
 				86FB4CCD2906541000453F4D /* Resources */,
-				12B9115627E0E249F7C23AC3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = WeiboTop;
+			packageProductDependencies = (
+				86C9A7D42925D3A600ABEC99 /* AlertToast */,
+				86C9A7D82925D47100ABEC99 /* Business */,
+			);
 			productName = WeiboTop;
 			productReference = 86FB4CCF2906541000453F4D /* WeiboTop.app */;
 			productType = "com.apple.product-type.application";
@@ -295,6 +239,9 @@
 				Base,
 			);
 			mainGroup = 86FB4CC62906541000453F4D;
+			packageReferences = (
+				86C9A7D32925D3A600ABEC99 /* XCRemoteSwiftPackageReference "AlertToast" */,
+			);
 			productRefGroup = 86FB4CD02906541000453F4D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -332,48 +279,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		12B9115627E0E249F7C23AC3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WeiboTop/Pods-WeiboTop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WeiboTop/Pods-WeiboTop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WeiboTop/Pods-WeiboTop-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		74DE52167A584B0550C1BD6B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WeiboTop-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		8666213C291B90A200D53CAF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -396,18 +301,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86E3A4B929067827000FA94E /* PersistentContainer.swift in Sources */,
 				86FB4CD52906541000453F4D /* ContentView.swift in Sources */,
 				8666213B291B8A6200D53CAF /* AppMetrics.swift in Sources */,
-				86E3A4AF29065ABB000FA94E /* ListViewModel.swift in Sources */,
-				862765AA290A248D006EF210 /* APIError.swift in Sources */,
 				86E3A4B32906656A000FA94E /* WebView.swift in Sources */,
 				86FB4CD32906541000453F4D /* WeiboTopApp.swift in Sources */,
-				86E3A4C329079496000FA94E /* DecodableTop.swift in Sources */,
-				86E3A4E0290925DE000FA94E /* Tops.swift in Sources */,
-				86E3A4B629066A11000FA94E /* Model.xcdatamodeld in Sources */,
-				86EB8D40291BAAAB00E8CB57 /* API.swift in Sources */,
-				86E3A4B129065C80000FA94E /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,7 +510,6 @@
 		};
 		86FB4CDE2906541100453F4D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E32287E6A0D9A6B54E5E966 /* Pods-WeiboTop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -643,7 +539,6 @@
 		};
 		86FB4CDF2906541100453F4D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A0EB96DB7E27A395075759DB /* Pods-WeiboTop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -712,18 +607,28 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCVersionGroup section */
-		86E3A4B429066A11000FA94E /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				86E3A4B529066A11000FA94E /* Top.xcdatamodel */,
-			);
-			currentVersion = 86E3A4B529066A11000FA94E /* Top.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
+/* Begin XCRemoteSwiftPackageReference section */
+		86C9A7D32925D3A600ABEC99 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
 		};
-/* End XCVersionGroup section */
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		86C9A7D42925D3A600ABEC99 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86C9A7D32925D3A600ABEC99 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
+		86C9A7D82925D47100ABEC99 /* Business */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Business;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 86FB4CC72906541000453F4D /* Project object */;
 }

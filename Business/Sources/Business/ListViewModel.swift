@@ -9,21 +9,28 @@ import Foundation
 import CoreData
 import Moya
 import Combine
+import CombineMoya
+import UIKit
 
 private let lastUpdatedDateKey = "lastUpdatedDate"
 
 @MainActor
-class ListViewModel: ObservableObject {
+public class ListViewModel: ObservableObject {
     
-    @Published var tops = [Top]()
-    @Published var showToast = false
+    @Published public private(set) var tops = [Top]()
+    @Published public var showToast = false
     
-    var errorMessage: String?
+    public private(set) var errorMessage: String?
     let dispatchQueue = DispatchQueue(label: "org.liuduo.WeiboTop.network.response.queue")
     var cancellable: AnyCancellable?
     
     let persistentContainer: PersistentContainer = {
-        let container = PersistentContainer(name: "Model")
+        let bundle = Bundle(for: ListViewModel.self)
+        let businessBundleUrl = bundle.url(forResource: "Business_Business", withExtension: "bundle")!
+        let businessBundle = Bundle(url: businessBundleUrl)!
+        let modelURL = businessBundle.url(forResource: "Model", withExtension: "momd")!
+        let managedObjectModel = NSManagedObjectModel(contentsOf: modelURL)!
+        let container = PersistentContainer(name: "Model", managedObjectModel: managedObjectModel)
         container.loadPersistentStores { description, error in
             if let error = error {
                 fatalError("Unable to load persistent stores: \(error)")
@@ -32,7 +39,7 @@ class ListViewModel: ObservableObject {
         return container
     }()
     
-    init() {
+    public init() {
         NotificationCenter.default.addObserver(
             forName: UIApplication.willEnterForegroundNotification,
             object: nil,
@@ -84,7 +91,7 @@ class ListViewModel: ObservableObject {
         }
     }
     
-    func refresh() async throws {
+    public func refresh() async throws {
         self.tops = try await loadData()
     }
     
@@ -118,7 +125,11 @@ class ListViewModel: ObservableObject {
                 })
         }
     }
-    
+}
+
+// MARK: - Private
+
+extension ListViewModel {
     private func deleteOldTops() {
         for top in tops {
             persistentContainer.viewContext.delete(top)

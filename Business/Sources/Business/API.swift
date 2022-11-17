@@ -8,7 +8,7 @@
 import Foundation
 import Moya
 
-enum API {
+enum API: Sendable {
     case weiboTop(num: Int, token: String)
 }
 

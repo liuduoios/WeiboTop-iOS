@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DecodableTop: Decodable {
+struct DecodableTop: Decodable, Hashable, Sendable {
     let hotWord: String
     let hotWordNum: Int64
     let url: String
