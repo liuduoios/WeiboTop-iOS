@@ -11,12 +11,13 @@
 		86662143291B90A200D53CAF /* WeiboTopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86662142291B90A200D53CAF /* WeiboTopTests.swift */; };
 		86662150291B90CF00D53CAF /* WeiboTopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8666214F291B90CF00D53CAF /* WeiboTopUITests.swift */; };
 		86662152291B90CF00D53CAF /* WeiboTopUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86662151291B90CF00D53CAF /* WeiboTopUITestsLaunchTests.swift */; };
+		867AF3902936139B00B1A9F6 /* Domain in Resources */ = {isa = PBXBuildFile; fileRef = 867AF38F2936139B00B1A9F6 /* Domain */; };
+		867AF3922936179500B1A9F6 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = 867AF3912936179500B1A9F6 /* Domain */; };
 		86C8197F2925EA7B0042EED8 /* SafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C8197E2925EA7B0042EED8 /* SafariViewController.swift */; };
 		86C819822925EFF50042EED8 /* Infrastructure in Frameworks */ = {isa = PBXBuildFile; productRef = 86C819812925EFF50042EED8 /* Infrastructure */; };
 		86C81984292601570042EED8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C81983292601570042EED8 /* Settings.swift */; };
 		86C8198629261BB10042EED8 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C8198529261BB10042EED8 /* AppSettings.swift */; };
 		86C9A7D52925D3A600ABEC99 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 86C9A7D42925D3A600ABEC99 /* AlertToast */; };
-		86C9A7D92925D47100ABEC99 /* Business in Frameworks */ = {isa = PBXBuildFile; productRef = 86C9A7D82925D47100ABEC99 /* Business */; };
 		86FB4CD32906541000453F4D /* WeiboTopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB4CD22906541000453F4D /* WeiboTopApp.swift */; };
 		86FB4CD52906541000453F4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FB4CD42906541000453F4D /* ContentView.swift */; };
 		86FB4CD72906541100453F4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86FB4CD62906541100453F4D /* Assets.xcassets */; };
@@ -47,11 +48,13 @@
 		8666214D291B90CF00D53CAF /* WeiboTopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeiboTopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8666214F291B90CF00D53CAF /* WeiboTopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboTopUITests.swift; sourceTree = "<group>"; };
 		86662151291B90CF00D53CAF /* WeiboTopUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboTopUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		867AF38F2936139B00B1A9F6 /* Domain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Domain; sourceTree = "<group>"; };
+		867AF39329361A3A00B1A9F6 /* Data */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Data; sourceTree = "<group>"; };
+		867AF39429361A5000B1A9F6 /* Presentation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Presentation; sourceTree = "<group>"; };
 		86C8197E2925EA7B0042EED8 /* SafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewController.swift; sourceTree = "<group>"; };
 		86C819802925EC1B0042EED8 /* Infrastructure */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Infrastructure; sourceTree = "<group>"; };
 		86C81983292601570042EED8 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		86C8198529261BB10042EED8 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
-		86C9A7D62925D40E00ABEC99 /* Business */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Business; sourceTree = "<group>"; };
 		86FB4CCF2906541000453F4D /* WeiboTop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiboTop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86FB4CD22906541000453F4D /* WeiboTopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboTopApp.swift; sourceTree = "<group>"; };
 		86FB4CD42906541000453F4D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -78,9 +81,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				867AF3922936179500B1A9F6 /* Domain in Frameworks */,
 				86C9A7D52925D3A600ABEC99 /* AlertToast in Frameworks */,
 				86C819822925EFF50042EED8 /* Infrastructure in Frameworks */,
-				86C9A7D92925D47100ABEC99 /* Business in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,8 +117,10 @@
 		86FB4CC62906541000453F4D = {
 			isa = PBXGroup;
 			children = (
+				867AF39429361A5000B1A9F6 /* Presentation */,
+				867AF39329361A3A00B1A9F6 /* Data */,
 				86C819802925EC1B0042EED8 /* Infrastructure */,
-				86C9A7D62925D40E00ABEC99 /* Business */,
+				867AF38F2936139B00B1A9F6 /* Domain */,
 				86FB4CD12906541000453F4D /* WeiboTop */,
 				86662141291B90A200D53CAF /* WeiboTopTests */,
 				8666214E291B90CF00D53CAF /* WeiboTopUITests */,
@@ -211,8 +216,8 @@
 			name = WeiboTop;
 			packageProductDependencies = (
 				86C9A7D42925D3A600ABEC99 /* AlertToast */,
-				86C9A7D82925D47100ABEC99 /* Business */,
 				86C819812925EFF50042EED8 /* Infrastructure */,
+				867AF3912936179500B1A9F6 /* Domain */,
 			);
 			productName = WeiboTop;
 			productReference = 86FB4CCF2906541000453F4D /* WeiboTop.app */;
@@ -283,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				867AF3902936139B00B1A9F6 /* Domain in Resources */,
 				86FB4CDA2906541100453F4D /* Preview Assets.xcassets in Resources */,
 				86FB4CD72906541100453F4D /* Assets.xcassets in Resources */,
 			);
@@ -632,6 +638,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		867AF3912936179500B1A9F6 /* Domain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Domain;
+		};
 		86C819812925EFF50042EED8 /* Infrastructure */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Infrastructure;
@@ -640,10 +650,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 86C9A7D32925D3A600ABEC99 /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
-		};
-		86C9A7D82925D47100ABEC99 /* Business */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Business;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -6,9 +6,8 @@
 //
 
 import SwiftUI
-import Alamofire
 import AlertToast
-import Business
+import Domain
 
 struct ContentView: View {
     @AppStorage("themeMode") private var themeMode: Theme = .system
