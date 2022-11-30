@@ -8,8 +8,10 @@
 import Foundation
 import Infrastructure
 
-final class FetchTopsUseCase: UseCase {
-    func start() -> Cancellable? {
-        return nil
-    }
+public protocol FetchTopsUseCase {
+    func execute() -> Cancellable?
+}
+
+final class DefaultFetchTopsUseCase {
+    
 }

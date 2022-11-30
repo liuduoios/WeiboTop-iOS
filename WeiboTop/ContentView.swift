@@ -34,7 +34,7 @@ struct ContentView: View {
 }
 
 struct TopList: View {
-    @ObservedObject var viewModel = ListViewModel()
+    @ObservedObject var viewModel: TopsListViewModel = DefaultTopsListViewModel()
     
     var body: some View {
         List(viewModel.tops) { top in

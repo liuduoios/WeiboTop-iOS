@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct APIError: Error {
-    let code: Int
-    let message: String
+public struct APIError: Error {
+    public let code: Int
+    public let message: String
     
-    func localizedDescription() -> String {
+    public func localizedDescription() -> String {
         return message
     }
 }
