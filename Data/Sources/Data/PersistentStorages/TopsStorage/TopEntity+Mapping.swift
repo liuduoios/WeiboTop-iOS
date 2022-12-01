@@ -15,6 +15,22 @@ extension TopEntity {
                      hotWordNum: hotWordNum,
                      url: url)
     }
+    
+    func toDomain() -> Top {
+        return .init(hotWord: hotWord,
+                     hotWordNum: hotWordNum,
+                     url: url)
+    }
+}
+
+extension Array where Element == TopEntity {
+    func toDomain() -> TopList {
+        var tops = [Top]()
+        for entity in self {
+            tops.append(entity.toDomain())
+        }
+        return TopList(tops: tops)
+    }
 }
 
 

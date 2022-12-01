@@ -8,16 +8,17 @@
 import Foundation
 
 public struct TopList: Equatable {
-    public let tops: [Top]
+    public var tops: [Top]
     
-    public func sortAndIndexed() -> [Top] {
+    /// Sort by hotWordNum and set index for per item
+    public mutating func sortAndIndexing() {
         var tops = tops.sorted {
-            $0.hotWordNum > $1.hotWordNum
+            $0.hotWordNum ?? 0 > $1.hotWordNum ?? 0
         }
         for index in 0..<tops.count {
             tops[index].index = index
         }
-        return tops
+        self.tops = tops
     }
     
     public init(tops: [Top]) {

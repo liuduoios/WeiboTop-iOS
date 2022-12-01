@@ -14,4 +14,9 @@ public struct APIError: Error {
     public func localizedDescription() -> String {
         return message
     }
+    
+    public init(code: Int, message: String) {
+        self.code = code
+        self.message = message
+    }
 }

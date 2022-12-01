@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Infrastructure
+import Moya
 
 public protocol UseCase {
     @discardableResult

@@ -7,12 +7,19 @@
 
 import Foundation
 import CoreData
+import Domain
 
-final class CoreDataTopsStorage {
+private let lastUpdatedDateKey = "lastUpdatedDate"
+
+public final class CoreDataTopsStorage {
     
     private let coreDataStorage: CoreDataStorage
     
-    init(coreDataStorage: CoreDataStorage = CoreDataStorage.shared) {
+    public convenience init() {
+        self.init(coreDataStorage: CoreDataStorage.shared)
+    }
+    
+    init(coreDataStorage: CoreDataStorage) {
         self.coreDataStorage = coreDataStorage
     }
     
@@ -34,13 +41,13 @@ final class CoreDataTopsStorage {
 }
 
 extension CoreDataTopsStorage: TopsStorage {
-    func getTops() async throws -> Result<[TopEntity], Error> {
+    public func getTopList() async throws -> Result<TopList, Error> {
         return try await withCheckedThrowingContinuation { continuation in
             coreDataStorage.performBackgroundTask { context in
                 do {
                     let fetchRequest = self.fetchRequest()
                     let results = try context.fetch(fetchRequest)
-                    continuation.resume(returning: Result.success(results))
+                    continuation.resume(returning: Result.success(results.toDomain()))
                 } catch {
                     continuation.resume(throwing: error)
                 }
@@ -48,7 +55,21 @@ extension CoreDataTopsStorage: TopsStorage {
         }
     }
     
-    func save(tops: [TopEntity]) {
+    func deleteAll() {
         
+    }
+    
+    public func save(topList: TopList) {
+        coreDataStorage.saveContext()
+    }
+    
+    public var lastSavedTime: Date? {
+        get {
+            return UserDefaults.standard.object(forKey: lastUpdatedDateKey) as? Date
+        }
+        set {
+            UserDefaults.standard.set(Date.now, forKey: lastUpdatedDateKey)
+            UserDefaults.standard.synchronize()
+        }
     }
 }

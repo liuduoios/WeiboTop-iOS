@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol Cancellable {
-    func cancel()
-}
+//public protocol Cancellable {
+//    func cancel()
+//}

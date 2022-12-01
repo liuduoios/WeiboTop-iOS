@@ -15,7 +15,7 @@ struct ContentView: View {
     var body: some View {
         TabView {
             NavigationView {
-                TopList()
+                TopList(viewModel: TopListDIContainer.makeTopsListViewModel(<#T##self: TopListDIContainer##TopListDIContainer#>))
             }
             .tabItem {
                 Image(systemName: "house")
@@ -34,7 +34,7 @@ struct ContentView: View {
 }
 
 struct TopList: View {
-    @ObservedObject var viewModel: TopsListViewModel = DefaultTopsListViewModel()
+    @ObservedObject var viewModel: TopsListViewModel
     
     var body: some View {
         List(viewModel.tops) { top in
@@ -63,7 +63,7 @@ struct TopList: View {
             }
         }
         .refreshable {
-            try? await viewModel.refresh()
+//            try? await viewModel.refresh()
         }
         .navigationTitle("微博热搜")
         .navigationBarTitleDisplayMode(.automatic)

@@ -7,15 +7,14 @@
 
 import Foundation
 import CoreData
-import Moya
 import Combine
-import CombineMoya
+//import CombineMoya
 import UIKit
 import Data
 import Domain
 import Infrastructure
 
-private let lastUpdatedDateKey = "lastUpdatedDate"
+
 
 public struct TopsListViewModelActions {
     let showTopDetail: (TopEntity) -> Void
@@ -43,7 +42,7 @@ public class DefaultTopsListViewModel: ObservableObject, TopsListViewModel {
     public private(set) var errorMessage: String?
     let dispatchQueue = DispatchQueue(label: "org.liuduo.WeiboTop.network.response.queue")
     var cancellable: AnyCancellable?
-    private var topsLoadTask: Infrastructure.Cancellable? { willSet { topsLoadTask?.cancel() } }
+    private var topsLoadTask: Cancellable? { willSet { topsLoadTask?.cancel() } }
     
 //    let persistentContainer: PersistentContainer = {
 //        let bundle = Bundle(for: ListViewModel.self)
@@ -62,6 +61,8 @@ public class DefaultTopsListViewModel: ObservableObject, TopsListViewModel {
     
     public init(fetchTopsUseCase: FetchTopsUseCase,
                 actions: TopsListViewModelActions? = nil) {
+        self.fetchTopsUseCase = fetchTopsUseCase
+        self.actions = actions
 //        NotificationCenter.default.addObserver(
 //            forName: UIApplication.willEnterForegroundNotification,
 //            object: nil,
@@ -76,7 +77,7 @@ public class DefaultTopsListViewModel: ObservableObject, TopsListViewModel {
 //                    }
 //                }
 //            }
-//        
+//
 //        _Concurrency.Task {
 //            do {
 //                tops = try await loadLocalData()
@@ -118,84 +119,11 @@ public class DefaultTopsListViewModel: ObservableObject, TopsListViewModel {
 //            }
 //        }
 //    }
-//
-//    public func refresh() async throws {
-//        self.tops = try await loadData()
-//    }
-//
-//    func loadData() async throws -> [TopEntity] {
-//        return try await withCheckedThrowingContinuation { continuation in
-//            let provider = MoyaProvider<API>()
-//            cancellable = provider.requestPublisher(.weiboTop(num: 20, token: "LwExDtUWhF3rH5ib"), callbackQueue: dispatchQueue)
-//                .sink (receiveCompletion: { completion in
-//                    guard case let .failure(error) = completion else {
-//                        return
-//                    }
-//                    continuation.resume(throwing: error)
-//                }, receiveValue: { response in
-//                    let decoder = JSONDecoder()
-//                    decoder.keyDecodingStrategy = .convertFromSnakeCase
-//                    do {
-//                        let res = try decoder.decode(ResponseDTO<DecodableTop>.self, from: response.data)
-//                        if res.code == 200 {
-//                            self.deleteOldTops()
-//                            let tops = self.topsFromDecodableTops(res.data ?? []).sortAndIndexed()
-//                            self.persistentContainer.saveContext()
-//                            self.saveUpdatedDate()
-//                            continuation.resume(returning: tops)
-//                        } else {
-//                            let error = APIError(code: res.code, message: res.msg)
-//                            continuation.resume(throwing: error)
-//                        }
-//                    } catch {
-//                        continuation.resume(throwing: error)
-//                    }
-//                })
-//        }
-//    }
 }
 
 // MARK: - Private
 
 extension DefaultTopsListViewModel {
-    private func deleteOldTops() {
-        for top in tops {
-            persistentContainer.viewContext.delete(top)
-        }
-    }
     
-    private func topsFromDecodableTops(_ decodableTops: [DecodableTop]) -> [TopEntity] {
-        var tops = [TopEntity]()
-        for decodableTop in decodableTops {
-            let top = NSEntityDescription.insertNewObject(forEntityName: "TopEntity", into: persistentContainer.viewContext) as! Top
-            top.hotWord = decodableTop.hotWord
-            top.hotWordNum = decodableTop.hotWordNum
-            top.url = decodableTop.url
-            tops.append(top)
-        }
-        return tops
-    }
     
-    private func saveUpdatedDate() {
-        UserDefaults.standard.set(Date.now, forKey: lastUpdatedDateKey)
-        UserDefaults.standard.synchronize()
-    }
-    
-    private func lastUpdatedDate() -> Date? {
-        UserDefaults.standard.object(forKey: lastUpdatedDateKey) as? Date
-    }
-    
-    private func hasRequestedToday() -> Bool {
-        if let lastUpdatedDate = lastUpdatedDate() {
-            let lastComponents = Calendar.current.dateComponents([.hour], from: lastUpdatedDate)
-            let nowComponents = Calendar.current.dateComponents([.hour], from: .now)
-            if lastComponents.hour == nowComponents.hour {
-                return true
-            } else {
-                return false
-            }
-        } else {
-            return false
-        }
-    }
 }

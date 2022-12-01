@@ -7,8 +7,9 @@
 
 import Foundation
 import Infrastructure
+import Moya
 
-protocol TopsRepositories {
+public protocol TopsRepositories {
     @discardableResult
-    func fetchTops() -> Cancellable?
+    func fetchTops(num: Int, completion: @escaping (Result<TopList, Error>) -> Void) -> Cancellable?
 }

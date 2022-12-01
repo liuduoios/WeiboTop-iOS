@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		864A2CF8293712A200880564 /* TopsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864A2CF4293712A200880564 /* TopsListViewModel.swift */; };
 		864A2CF9293712A200880564 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864A2CF7293712A200880564 /* LoadingView.swift */; };
+		864A42582938484B00880564 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864A42572938484B00880564 /* AppConfiguration.swift */; };
 		8666213B291B8A6200D53CAF /* AppMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8666213A291B8A6200D53CAF /* AppMetrics.swift */; };
 		86662143291B90A200D53CAF /* WeiboTopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86662142291B90A200D53CAF /* WeiboTopTests.swift */; };
 		86662150291B90CF00D53CAF /* WeiboTopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8666214F291B90CF00D53CAF /* WeiboTopUITests.swift */; };
@@ -16,6 +17,8 @@
 		867AF3902936139B00B1A9F6 /* Domain in Resources */ = {isa = PBXBuildFile; fileRef = 867AF38F2936139B00B1A9F6 /* Domain */; };
 		867AF3922936179500B1A9F6 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = 867AF3912936179500B1A9F6 /* Domain */; };
 		86C655BE29370F3400E9B71C /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = 86C655BD29370F3400E9B71C /* Data */; };
+		86C7B2EC293876130057E448 /* TopsSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C7B2EB293876130057E448 /* TopsSceneDIContainer.swift */; };
+		86C7B2EE293879A00057E448 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C7B2ED293879A00057E448 /* AppDIContainer.swift */; };
 		86C8197F2925EA7B0042EED8 /* SafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C8197E2925EA7B0042EED8 /* SafariViewController.swift */; };
 		86C819822925EFF50042EED8 /* Infrastructure in Frameworks */ = {isa = PBXBuildFile; productRef = 86C819812925EFF50042EED8 /* Infrastructure */; };
 		86C81984292601570042EED8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C81983292601570042EED8 /* Settings.swift */; };
@@ -47,6 +50,7 @@
 /* Begin PBXFileReference section */
 		864A2CF4293712A200880564 /* TopsListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopsListViewModel.swift; sourceTree = "<group>"; };
 		864A2CF7293712A200880564 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		864A42572938484B00880564 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		8666213A291B8A6200D53CAF /* AppMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetrics.swift; sourceTree = "<group>"; };
 		86662140291B90A200D53CAF /* WeiboTopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeiboTopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86662142291B90A200D53CAF /* WeiboTopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboTopTests.swift; sourceTree = "<group>"; };
@@ -55,6 +59,8 @@
 		86662151291B90CF00D53CAF /* WeiboTopUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiboTopUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		867AF38F2936139B00B1A9F6 /* Domain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Domain; sourceTree = "<group>"; };
 		867AF39329361A3A00B1A9F6 /* Data */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Data; sourceTree = "<group>"; };
+		86C7B2EB293876130057E448 /* TopsSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopsSceneDIContainer.swift; sourceTree = "<group>"; };
+		86C7B2ED293879A00057E448 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 		86C8197E2925EA7B0042EED8 /* SafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewController.swift; sourceTree = "<group>"; };
 		86C819802925EC1B0042EED8 /* Infrastructure */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Infrastructure; sourceTree = "<group>"; };
 		86C81983292601570042EED8 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -140,6 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				86FB4CD22906541000453F4D /* WeiboTopApp.swift */,
+				864A42572938484B00880564 /* AppConfiguration.swift */,
+				86C7B2EA293875FA0057E448 /* DIContainer */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -159,6 +167,15 @@
 				86662151291B90CF00D53CAF /* WeiboTopUITestsLaunchTests.swift */,
 			);
 			path = WeiboTopUITests;
+			sourceTree = "<group>";
+		};
+		86C7B2EA293875FA0057E448 /* DIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				86C7B2ED293879A00057E448 /* AppDIContainer.swift */,
+				86C7B2EB293876130057E448 /* TopsSceneDIContainer.swift */,
+			);
+			path = DIContainer;
 			sourceTree = "<group>";
 		};
 		86C9A7D72925D47100ABEC99 /* Frameworks */ = {
@@ -373,10 +390,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86C7B2EE293879A00057E448 /* AppDIContainer.swift in Sources */,
+				864A42582938484B00880564 /* AppConfiguration.swift in Sources */,
 				86FB4CD52906541000453F4D /* ContentView.swift in Sources */,
 				8666213B291B8A6200D53CAF /* AppMetrics.swift in Sources */,
 				864A2CF8293712A200880564 /* TopsListViewModel.swift in Sources */,
 				86C8198629261BB10042EED8 /* AppSettings.swift in Sources */,
+				86C7B2EC293876130057E448 /* TopsSceneDIContainer.swift in Sources */,
 				86C8197F2925EA7B0042EED8 /* SafariViewController.swift in Sources */,
 				864A2CF9293712A200880564 /* LoadingView.swift in Sources */,
 				86FB4CD32906541000453F4D /* WeiboTopApp.swift in Sources */,
