@@ -6,8 +6,16 @@
 //
 
 import Foundation
+import Domain
 
-protocol TopsStorage {
-    func getTops() async throws -> Result<[TopEntity], Error>
-    func save(tops: [TopEntity])
+public protocol TopsStorage {
+    
+    /// 获取热搜列表
+    func getTopList() async throws -> Result<TopList, Error>
+    
+    /// 保存热搜列表
+    func save(topList: TopList)
+    
+    /// 上次保存时间
+    var lastSavedTime: Date? { get set }
 }
