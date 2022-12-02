@@ -9,6 +9,7 @@ import Foundation
 import Domain
 import Moya
 import CombineMoya
+import Combine
 
 let apiToken = "LwExDtUWhF3rH5ib"
 
@@ -22,43 +23,58 @@ public final class DefaultTopsRepository {
 }
 
 extension DefaultTopsRepository: TopsRepositories {
-    public func fetchTops(num: Int, completion: @escaping (Result<TopList, Error>) -> Void) -> Cancellable? {
+    
+    public func fetchTops(num: Int, completion: @escaping TopListCompletion) -> Domain.Cancellable? {
         let task = RepositoryTask()
         
-        let provider = MoyaProvider<API>()
-        _ = provider.requestPublisher(.weiboTop(num: num, token: apiToken), callbackQueue: callbackQueue)
-            .sink { comple in
-                guard case let .failure(error) = comple else {
-                    return
-                }
-                completion(.failure(error))
-            } receiveValue: { response in
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                do {
-                    let res = try decoder.decode(ResponseDTO<TopDTO>.self, from: response.data)
-                    if res.code == 200 {
-                        // TODO: delete all
-                        
-                        // Save new list
-                        var topList = res.toDomain()
-                        topList.sortAndIndexing()
-                        self.cache.save(topList: topList)
-                        
-                        completion(.success(topList))
-                    } else {
-                        let error = APIError(code: res.code, message: res.msg)
-                        completion(.failure(error))
-                    }
-                } catch {
-                    completion(.failure(error))
-                }
+        fetchFromCache(num: num) { result in
+            if !self.hasRequestedCurrentHour() {
+                task.cancellable = self.fetchFromNetwork(num: num, completion: completion)
             }
+        }
         
         return task
     }
     
-    private func hasRequestedToday() -> Bool {
+    private func fetchFromCache(num: Int, completion: @escaping TopListCompletion) {
+        self.cache.getTopList(num: num) { result in
+            
+        }
+    }
+    
+    private func fetchFromNetwork(num: Int, completion: @escaping TopListCompletion) -> AnyCancellable {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        let provider = MoyaProvider<API>()
+        return provider.requestPublisher(.weiboTop(num: num, token: apiToken), callbackQueue: callbackQueue)
+            .map { response -> Data in
+                response.data
+            }
+            .decode(type: ResponseDTO<TopDTO>.self, decoder: decoder)
+            .sink(
+                receiveCompletion: { comple in
+                    guard case let .failure(error) = comple else {
+                        return
+                    }
+                    completion(.failure(error))
+                },
+                receiveValue: { responseDTO in
+                    if let error = responseDTO.error {
+                        completion(.failure(error))
+                    } else {
+                        // Save new list
+                        self.cache.save(topsResponseDTO: responseDTO)
+                        
+                        var topList = responseDTO.toDomain()
+                        topList.sortAndIndexing()
+                        completion(.success(topList))
+                    }
+                }
+            )
+    }
+    
+    private func hasRequestedCurrentHour() -> Bool {
         if let lastUpdatedDate = cache.lastSavedTime {
             let lastComponents = Calendar.current.dateComponents([.hour], from: lastUpdatedDate)
             let nowComponents = Calendar.current.dateComponents([.hour], from: .now)

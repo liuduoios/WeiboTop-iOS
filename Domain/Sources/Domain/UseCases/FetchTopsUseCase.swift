@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import Moya
 
 public protocol FetchTopsUseCase {
-    func execute(completion: @escaping (Result<TopList, Error>) -> Void) -> Cancellable?
+    func execute(requestValue: FetchTopsUseCaseRequestValue,
+                 completion: @escaping (Result<TopList, Error>) -> Void) -> Cancellable?
 }
 
 public final class DefaultFetchTopsUseCase: FetchTopsUseCase {
@@ -20,13 +20,19 @@ public final class DefaultFetchTopsUseCase: FetchTopsUseCase {
         self.topsRepository = topsRepository
     }
     
-    public func execute(completion: @escaping (Result<TopList, Error>) -> Void) -> Cancellable? {
-        return topsRepository.fetchTops(num: 20) { result in
-            if case .success = result {
-//                self.topsRepository.sav
-            }
-            
+    public func execute(requestValue: FetchTopsUseCaseRequestValue,
+                        completion: @escaping (Result<TopList, Error>) -> Void) -> Cancellable? {
+        return topsRepository.fetchTops(num: requestValue.num) { result in
             completion(result)
         }
+    }
+}
+
+public struct FetchTopsUseCaseRequestValue {
+    // Number of Tops
+    let num: Int
+    
+    public init(num: Int) {
+        self.num = num
     }
 }

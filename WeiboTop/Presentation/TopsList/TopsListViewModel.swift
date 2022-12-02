@@ -25,24 +25,23 @@ public protocol TopsListViewModelInput {
 }
 
 public protocol TopsListViewModelOutput {
-    var tops: [TopEntity] { get }
+    @MainActor var tops: [Top] { get }
 }
 
-public protocol TopsListViewModel: TopsListViewModelInput, TopsListViewModelOutput {}
+public protocol TopsListViewModel: ObservableObject, TopsListViewModelInput, TopsListViewModelOutput {}
 
 @MainActor
 public class DefaultTopsListViewModel: ObservableObject, TopsListViewModel {
     
     private let fetchTopsUseCase: FetchTopsUseCase
-    private let actions: TopsListViewModelActions?
     
-    @Published public private(set) var tops = [TopEntity]()
+    @Published public private(set) var tops = [Top]()
     @Published public var showToast = false
     
     public private(set) var errorMessage: String?
     let dispatchQueue = DispatchQueue(label: "org.liuduo.WeiboTop.network.response.queue")
     var cancellable: AnyCancellable?
-    private var topsLoadTask: Cancellable? { willSet { topsLoadTask?.cancel() } }
+    private var topsLoadTask: Domain.Cancellable? { willSet { topsLoadTask?.cancel() } }
     
 //    let persistentContainer: PersistentContainer = {
 //        let bundle = Bundle(for: ListViewModel.self)
@@ -62,7 +61,6 @@ public class DefaultTopsListViewModel: ObservableObject, TopsListViewModel {
     public init(fetchTopsUseCase: FetchTopsUseCase,
                 actions: TopsListViewModelActions? = nil) {
         self.fetchTopsUseCase = fetchTopsUseCase
-        self.actions = actions
 //        NotificationCenter.default.addObserver(
 //            forName: UIApplication.willEnterForegroundNotification,
 //            object: nil,
@@ -88,12 +86,19 @@ public class DefaultTopsListViewModel: ObservableObject, TopsListViewModel {
 //                handleError(error)
 //            }
 //        }
+        
+        load(num: 20)
     }
     
-    private func load() {
-//        Task {
-//            topsLoadTask = await fetchTopsUseCase.execute()
-//        }
+    private func load(num: Int) {
+        topsLoadTask = fetchTopsUseCase.execute(requestValue: .init(num: num), completion: { result in
+            switch result {
+            case .success(let topList):
+                self.tops = topList.tops
+            case .failure(let error):
+                self.errorMessage = error.localizedDescription
+            }
+        })
     }
     
     private func handleError(_ error: Error) {

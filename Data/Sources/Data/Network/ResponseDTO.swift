@@ -14,4 +14,9 @@ public struct ResponseDTO<DataType: Decodable>: Decodable {
     public let data: [DataType]?
     public let time: TimeInterval
     public let logId: Int64
+    
+    public var error: APIError? {
+        if code == 200 { return nil }
+        return APIError(code: code, message: msg)
+    }
 }

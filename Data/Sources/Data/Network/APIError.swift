@@ -11,7 +11,7 @@ public struct APIError: Error {
     public let code: Int
     public let message: String
     
-    public func localizedDescription() -> String {
+    public var localizedDescription: String {
         return message
     }
     

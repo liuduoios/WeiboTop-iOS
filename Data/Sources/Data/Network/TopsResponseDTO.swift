@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias TopsResponseDTO = ResponseDTO<TopDTO>
+public typealias TopsResponseDTO = ResponseDTO<TopDTO>
 
 public struct TopDTO: Decodable {
     public let hotWord: String?

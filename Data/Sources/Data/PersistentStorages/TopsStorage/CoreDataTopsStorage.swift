@@ -28,7 +28,7 @@ public final class CoreDataTopsStorage {
         return request
     }
     
-    private func deleteTops(in context: NSManagedObjectContext) {
+    private func deleteAllTops(in context: NSManagedObjectContext) {
         let request = fetchRequest()
         do {
             for topEntity in try context.fetch(request) {
@@ -41,26 +41,34 @@ public final class CoreDataTopsStorage {
 }
 
 extension CoreDataTopsStorage: TopsStorage {
-    public func getTopList() async throws -> Result<TopList, Error> {
-        return try await withCheckedThrowingContinuation { continuation in
-            coreDataStorage.performBackgroundTask { context in
-                do {
-                    let fetchRequest = self.fetchRequest()
-                    let results = try context.fetch(fetchRequest)
-                    continuation.resume(returning: Result.success(results.toDomain()))
-                } catch {
-                    continuation.resume(throwing: error)
-                }
+    public func getTopList(num: Int, completion: @escaping (Result<TopList, Error>) -> Void) {
+        coreDataStorage.performBackgroundTask { context in
+            do {
+                let fetchRequest = self.fetchRequest()
+                let results = try context.fetch(fetchRequest)
+                completion(.success(results.toDomain()))
+            } catch {
+                completion(.failure(error))
             }
         }
     }
     
-    func deleteAll() {
-        
-    }
-    
-    public func save(topList: TopList) {
-        coreDataStorage.saveContext()
+    public func save(topsResponseDTO: TopsResponseDTO) {
+        coreDataStorage.performBackgroundTask { context in
+            do {
+                self.deleteAllTops(in: context)
+                
+                if let topDTOs = topsResponseDTO.data {
+                    for topDTO in topDTOs {
+                        _ = topDTO.toEntity(in: context)
+                    }
+                }
+                
+                try context.save()
+            } catch {
+                print("CoreDataTopsStorage save error: \(error)")
+            }
+        }
     }
     
     public var lastSavedTime: Date? {

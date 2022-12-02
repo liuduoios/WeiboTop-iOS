@@ -27,8 +27,7 @@ final class TopsSceneDIContainer {
     
     // MARK: - Tops List
     
-    @MainActor func makeTopsListViewModel(actions: TopsListViewModelActions) -> TopsListViewModel {
-        return DefaultTopsListViewModel(fetchTopsUseCase: makeFetchTopsUseCase(),
-                                        actions: actions)
+    @MainActor func makeTopsListViewModel() -> any TopsListViewModel {
+        return DefaultTopsListViewModel(fetchTopsUseCase: makeFetchTopsUseCase())
     }
 }

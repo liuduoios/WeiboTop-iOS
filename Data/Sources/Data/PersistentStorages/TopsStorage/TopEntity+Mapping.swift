@@ -33,4 +33,14 @@ extension Array where Element == TopEntity {
     }
 }
 
+extension TopDTO {
+    func toEntity(in context: NSManagedObjectContext) -> TopEntity {
+        let entity = TopEntity(context: context)
+        entity.hotWord = hotWord ?? ""
+        entity.hotWordNum = hotWordNum ?? 0
+        entity.url = url ?? ""
+        return entity
+    }
+}
+
 

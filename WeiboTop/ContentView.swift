@@ -11,11 +11,12 @@ import Domain
 
 struct ContentView: View {
     @AppStorage("themeMode") private var themeMode: Theme = .system
+    private let topSceneDIContainer = TopsSceneDIContainer()
     
     var body: some View {
         TabView {
             NavigationView {
-                TopList(viewModel: TopListDIContainer.makeTopsListViewModel(<#T##self: TopListDIContainer##TopListDIContainer#>))
+                TopList(viewModel: topSceneDIContainer.makeTopsListViewModel())
             }
             .tabItem {
                 Image(systemName: "house")
@@ -34,7 +35,7 @@ struct ContentView: View {
 }
 
 struct TopList: View {
-    @ObservedObject var viewModel: TopsListViewModel
+    @ObservedObject var viewModel: any TopsListViewModel
     
     var body: some View {
         List(viewModel.tops) { top in

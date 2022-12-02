@@ -15,7 +15,7 @@ public struct Top: Equatable, Identifiable {
     public let hotWordNum: Int64?
     public let url: String?
     
-    public init(index: Int = 0, hotWord: String?, hotWordNum: Int64?, url: String?) {
+    public init(index: Int = -1, hotWord: String?, hotWordNum: Int64?, url: String?) {
         self.index = index
         self.hotWord = hotWord
         self.hotWordNum = hotWordNum

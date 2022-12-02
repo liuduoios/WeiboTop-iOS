@@ -10,6 +10,8 @@ import Infrastructure
 import Moya
 
 public protocol TopsRepositories {
+    typealias TopListCompletion = (Result<TopList, Error>) -> Void
+    
     @discardableResult
-    func fetchTops(num: Int, completion: @escaping (Result<TopList, Error>) -> Void) -> Cancellable?
+    func fetchTops(num: Int, completion: @escaping TopListCompletion) -> Cancellable?
 }

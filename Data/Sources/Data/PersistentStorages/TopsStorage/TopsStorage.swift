@@ -11,10 +11,10 @@ import Domain
 public protocol TopsStorage {
     
     /// 获取热搜列表
-    func getTopList() async throws -> Result<TopList, Error>
+    func getTopList(num: Int, completion: @escaping (Result<TopList, Error>) -> Void)
     
     /// 保存热搜列表
-    func save(topList: TopList)
+    func save(topsResponseDTO: TopsResponseDTO)
     
     /// 上次保存时间
     var lastSavedTime: Date? { get set }

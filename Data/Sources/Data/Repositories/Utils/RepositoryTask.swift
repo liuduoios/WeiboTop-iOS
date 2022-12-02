@@ -6,13 +6,15 @@
 //
 
 import Foundation
-import Moya
+import Domain
+import Combine
 
-class RepositoryTask: Cancellable {
-//    var networkTask: NetworkCan
+class RepositoryTask: Domain.Cancellable {
+    var cancellable: AnyCancellable?
     var isCancelled: Bool = false
     
     func cancel() {
+        cancellable?.cancel()
         isCancelled = true
     }
 }
